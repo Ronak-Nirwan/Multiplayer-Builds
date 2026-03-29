@@ -1,6 +1,11 @@
 # Multiplayer Builds
 First person multiplayer building game where players can create and join a lobby, place/ destroy blocks like Minecraft.
 
+![Current Progress](WIP_IMG/Testing.png)
+
+#### Controls 
+- WASD, Left click to place, Right click to delete, Space/Q to move up, Shift/E to move down
+
 ## Final Deliverable
 
 - Playable multiplayer demo
