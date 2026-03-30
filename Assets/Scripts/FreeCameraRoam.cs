@@ -1,12 +1,15 @@
 using UnityEngine;
 
+/// <summary>
+/// Generic free roam script for camera, to move freely in game scene
+/// </summary>
 public class FreeCameraRoam : MonoBehaviour
 {
-    float speed = 10f;
-    float sensitivity = 200f;
-    GridSystem gridSystem;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float cameraSensitivity = 200f;
+    private GridSystem gridSystem;
 
-    void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -23,24 +26,26 @@ public class FreeCameraRoam : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y");
 
         transform.Translate(
-            h * speed * Time.deltaTime,
-            q * speed * Time.deltaTime,
-            v * speed * Time.deltaTime
+            h * moveSpeed * Time.deltaTime,
+            q * moveSpeed * Time.deltaTime,
+            v * moveSpeed * Time.deltaTime
         );
 
-        transform.Rotate(Vector3.up * mouseX * sensitivity * Time.deltaTime, Space.World);
-        transform.Rotate(Vector3.right * -mouseY * sensitivity * Time.deltaTime, Space.Self);
+        transform.Rotate(Vector3.up * mouseX * cameraSensitivity * Time.deltaTime, Space.World);
+        transform.Rotate(Vector3.right * -mouseY * cameraSensitivity * Time.deltaTime, Space.Self);
+
+
+        // Basic Interaction for testing
+
 
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 5f))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
             {
-                gridSystem.PlaceBlockAt(hit.point + hit.normal * 0.5f);
+                gridSystem.TryPlaceBlock(hit.point + hit.normal * 0.5f);
                 Debug.DrawRay(hit.point, hit.normal, Color.red, 2f);
             }
-
-            //Debug.Log(hit.point);
 
         }
 
@@ -49,11 +54,7 @@ public class FreeCameraRoam : MonoBehaviour
             RaycastHit hit;
             Physics.Raycast(transform.position, transform.forward, out hit);
 
-            if(hit.collider.CompareTag("Box"))
-            {
-                Destroy(hit.collider.gameObject);
-            }
-            
+            gridSystem.TryRemoveBlock(hit.point - hit.normal * 0.5f);
         }
     }
 }

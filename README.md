@@ -1,7 +1,9 @@
 # Multiplayer Builds
 First person multiplayer building game where players can create and join a lobby, place/ destroy blocks like Minecraft.
 
-![Current Progress](WIP_IMG/Testing.png)
+![Current Progress](WIP_IMG/Clean%20Grid%20System.png)
+![Current Progress](WIP_IMG/Clean%20Grid%20System.png)
+IMG: Debug in scene mode
 
 #### Controls 
 - WASD, Left click to place, Right click to delete, Space/Q to move up, Shift/E to move down
@@ -16,7 +18,7 @@ First person multiplayer building game where players can create and join a lobby
 
 ## Features :-
 
-### Phase 1 (Core Features) :-
+### Phase 1 :o: (Core Features) :-
 
 - First Person Controller
 - Placing, destroying, picking and throwing blocks (Block interaction + Building  system)
@@ -43,13 +45,13 @@ First person multiplayer building game where players can create and join a lobby
 
 ## Systems (Execution order) :-
 
-### Goal 1 : Core Gameplay (Single player)
+### Goal 1 :heavy_check_mark: : Core Gameplay (Single player)
 
 - World/ Grid system
 - Building system
 - Interaction system
 
-### Goal 2 : Player
+### Goal 2 :white_circle: : Player
 
 - First Person Controller
 - Camera + Movement
