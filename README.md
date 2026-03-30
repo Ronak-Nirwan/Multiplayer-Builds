@@ -2,7 +2,7 @@
 First person multiplayer building game where players can create and join a lobby, place/ destroy blocks like Minecraft.
 
 ![Current Progress](WIP_IMG/Clean%20Grid%20System.png)
-![Current Progress](WIP_IMG/Clean%20Grid%20System.png)
+![Current Progress](WIP_IMG/Clean%20Grid%20Debug.png)
 IMG: Debug in scene mode
 
 #### Controls 
