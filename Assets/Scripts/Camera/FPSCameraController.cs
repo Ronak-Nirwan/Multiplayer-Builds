@@ -5,12 +5,12 @@ using UnityEngine;
 /// </summary>
 public class FPSCameraController : MonoBehaviour, ICameraController
 {
-    public Transform playerBody; // Reference to the player body
+    public Transform PlayerBody; // Reference to the player body
 
     [Header("Settings")]
-    public float sensitivityX = 2f;
-    public float sensitivityY = 0.5f;
-    public float smoothTime = 0.05f;
+    public float SensitivityX = 2f;
+    public float SensitivityY = 0.5f;
+    public float SmoothTime = 0.05f;
 
     float xRotation = 0f;
 
@@ -34,17 +34,17 @@ public class FPSCameraController : MonoBehaviour, ICameraController
             currentLook,
             input,
             ref currentLookVelocity,
-            smoothTime
+            SmoothTime
         );
 
-        float mouseX = currentLook.x * sensitivityX * 10f * Time.deltaTime;
-        float mouseY = currentLook.y * sensitivityY * 10f * Time.deltaTime;
+        float mouseX = currentLook.x * SensitivityX * 10f * Time.deltaTime;
+        float mouseY = currentLook.y * SensitivityY * 10f * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        playerBody.Rotate(Vector3.up * mouseX);
+        PlayerBody.Rotate(Vector3.up * mouseX);
     }
 }
