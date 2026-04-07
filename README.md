@@ -1,6 +1,13 @@
 # Multiplayer Builds
 First person multiplayer building game where players can create and join a lobby, place/ destroy blocks like Minecraft.
 
+## Current Version :- 
+
+### Systems -
+ - A grid system for placing and removing block
+ - A modular First person controller 
+ - A Random World generator to generate a 100 x 100 world  
+
 ![Current Progress](WIP_IMG/Clean%20Grid%20System.png)
 ![Current Progress](WIP_IMG/Clean%20Grid%20Debug.png)
 IMG: Debug in scene mode
