@@ -1,9 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// A first person Camera controller
+/// </summary>
 public class FPSCameraController : MonoBehaviour, ICameraController
 {
-    public Transform playerBody;
+    public Transform playerBody; // Reference to the player body
 
     [Header("Settings")]
     public float sensitivityX = 2f;
@@ -20,6 +22,11 @@ public class FPSCameraController : MonoBehaviour, ICameraController
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    /// <summary>
+    /// Calculating the camera movement for the given mouse input
+    /// </summary>
+    /// <param name="input"></param>
 
     public void Look(Vector2 input)
     {

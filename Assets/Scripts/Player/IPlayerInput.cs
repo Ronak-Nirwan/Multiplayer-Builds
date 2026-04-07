@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Input interfacing for all types of character input
+/// </summary>
 public interface IPlayerInput
 {
     Vector2 Move { get; }

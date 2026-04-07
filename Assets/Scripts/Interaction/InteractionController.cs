@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Controller for handling the interactions Based on different inputs and input type
+/// </summary>
+
 public class InteractionController : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
@@ -29,6 +33,10 @@ public class InteractionController : MonoBehaviour
         HandleUse();
     }
 
+    /// <summary>
+    /// For detecting the target to be in front of player (Needs work for Interactor)
+    /// </summary>
+
     private void DetectTarget()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
@@ -42,6 +50,11 @@ public class InteractionController : MonoBehaviour
             currentTarget = GetComponent<GridInteractor>();
         }
     }
+
+    /// <summary>
+    /// Input handling for Primary Button LClick, To detect hold and press
+    /// </summary>
+
     private void HandlePrimary()
     {
         if (input.PrimaryPressed)
@@ -67,6 +80,10 @@ public class InteractionController : MonoBehaviour
 
         lastPrimaryHeld = input.PrimaryHeld;
     }
+
+    /// <summary>
+    /// Handling input for secondary button RClick, Detecting hold and Press
+    /// </summary>
 
     private void HandleSecondary()
     {
@@ -94,6 +111,9 @@ public class InteractionController : MonoBehaviour
         lastSecondaryHeld = input.SecondaryHeld;
     }
 
+    /// <summary>
+    /// A third type of input for Consuming or Using Item (might need later on)
+    /// </summary>
     private void HandleUse()
     {
         if (input.UsePressed)

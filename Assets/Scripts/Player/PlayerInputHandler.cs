@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// The overall input handler for Managing the New input system
+/// </summary>
 public class PlayerInputHandler : MonoBehaviour, IPlayerInput
 {
     private InputSystem_Actions controls;

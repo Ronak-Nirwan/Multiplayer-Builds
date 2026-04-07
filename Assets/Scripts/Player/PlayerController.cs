@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// The final script for controlling the player, Hooks both Movement and camera
+/// </summary>
+
 public class PlayerController : MonoBehaviour
 {
     private IPlayerInput input;
