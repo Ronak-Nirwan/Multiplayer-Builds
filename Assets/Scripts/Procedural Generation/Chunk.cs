@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Divided the world in 10x10 block chunks, need to be optimized (giving ~60 FPS in editor) 
+/// </summary>
+
 public class Chunk : MonoBehaviour
 {
     int chunkSize;
@@ -34,9 +38,16 @@ public class Chunk : MonoBehaviour
                 for (int y = 0; y <= height; y++)
                 {
                     Vector3 pos = new Vector3(x, y, z) + transform.position;
-                    Instantiate(blockPrefab, pos, Quaternion.identity, transform);
+                    GameObject block = Instantiate(blockPrefab, pos, Quaternion.identity, transform);
+
+                    if (y != height)
+                    {
+                        Destroy(block.GetComponent<Collider>());
+                        //Destroy(block);
+                    }
                 }
             }
         }
+
     }
 }

@@ -37,5 +37,13 @@ public class PlayerController : MonoBehaviour
         }
 
         cameraController.Look(input.Look);
+
+        // Small respawn logic for now
+
+        if(transform.position.y < -10f)
+        {
+            transform.position = new Vector3(50, 10, 50);
+        }
     }
+
 }

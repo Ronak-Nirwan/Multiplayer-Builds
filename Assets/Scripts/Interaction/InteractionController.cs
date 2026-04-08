@@ -6,16 +6,12 @@ using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
-    [SerializeField] private Camera playerCamera;
-    [SerializeField] private float interactDistance = 3f;
-    [SerializeField] private LayerMask interactLayer;
+    [SerializeField] private Interactor interactor;
 
     private bool lastPrimaryHeld;
     private bool lastSecondaryHeld;
 
     private IPlayerInput input;
-    private IInteractable currentTarget;
-    
 
     private void Awake()
     {
@@ -24,31 +20,9 @@ public class InteractionController : MonoBehaviour
 
     private void Update()
     {
-        DetectTarget();
-
-        if (currentTarget == null) return;
-
         HandlePrimary();
         HandleSecondary();
         HandleUse();
-    }
-
-    /// <summary>
-    /// For detecting the target to be in front of player (Needs work for Interactor)
-    /// </summary>
-
-    private void DetectTarget()
-    {
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactLayer))
-        {
-            currentTarget = hit.collider.GetComponent<IInteractable>();
-        }
-        else
-        {
-            currentTarget = GetComponent<GridInteractor>();
-        }
     }
 
     /// <summary>
@@ -59,23 +33,23 @@ public class InteractionController : MonoBehaviour
     {
         if (input.PrimaryPressed)
         {
-            currentTarget?.Interact(InteractionType.Primary, InputPhase.Pressed);
+            interactor.Interact(InteractionType.Primary, InputPhase.Pressed);
             input.ConsumePrimary();
         }
 
         if (input.PrimaryHeld && !lastPrimaryHeld)
         {
-            currentTarget?.Interact(InteractionType.Primary, InputPhase.Started);
+            interactor.Interact(InteractionType.Primary, InputPhase.Started);
         }
 
         if (input.PrimaryHeld)
         {
-            currentTarget?.Interact(InteractionType.Primary, InputPhase.Held);
+            interactor.Interact(InteractionType.Primary, InputPhase.Held);
         }
 
         if (!input.PrimaryHeld && lastPrimaryHeld)
         {
-            currentTarget?.Interact(InteractionType.Primary, InputPhase.Released);
+            interactor.Interact(InteractionType.Primary, InputPhase.Released);
         }
 
         lastPrimaryHeld = input.PrimaryHeld;
@@ -89,23 +63,23 @@ public class InteractionController : MonoBehaviour
     {
         if (input.SecondaryPressed)
         {
-            currentTarget?.Interact(InteractionType.Secondary, InputPhase.Pressed);
+            interactor.Interact(InteractionType.Secondary, InputPhase.Pressed);
             input.ConsumeSecondary();
         }
 
         if (input.SecondaryHeld && !lastSecondaryHeld)
         {
-            currentTarget?.Interact(InteractionType.Secondary, InputPhase.Started);
+            interactor.Interact(InteractionType.Secondary, InputPhase.Started);
         }
 
         if (input.SecondaryHeld)
         {
-            currentTarget?.Interact(InteractionType.Secondary, InputPhase.Held);
+            interactor.Interact(InteractionType.Secondary, InputPhase.Held);
         }
 
         if (!input.SecondaryHeld && lastSecondaryHeld)
         {
-            currentTarget?.Interact(InteractionType.Secondary, InputPhase.Released);
+            interactor.Interact(InteractionType.Secondary, InputPhase.Released);
         }
             
         lastSecondaryHeld = input.SecondaryHeld;
@@ -118,7 +92,7 @@ public class InteractionController : MonoBehaviour
     {
         if (input.UsePressed)
         {
-            currentTarget.Interact(InteractionType.Use, InputPhase.Pressed);
+            interactor.Interact(InteractionType.Use, InputPhase.Pressed);
             input.ConsumeUse();
         }
     }
